@@ -2,11 +2,15 @@
   <!--toolbar-->
   <mat-toolbar color="primary">
 
-    <mat-icon class="toolbar-menu-icon">menu</mat-icon>
+    <img class="logo-image" src="../assets/image/logo.jpg" height="50px" width="70px">
     <span>{{title}}</span>
 
+    <span class="userName">{{currentUser}}</span>
   </mat-toolbar>
 
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
   <span class="done">
     <button mat-fab>
       <mat-icon>add</mat-icon>

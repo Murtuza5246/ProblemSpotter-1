@@ -12,10 +12,6 @@ mat-card {
   text-align: center;
 }
 
-.toolbar-menu-icon{
-  margin: 8px;
-}
-
 mat-toolbar-row {
   justify-content: space-between;
 }
@@ -25,4 +21,21 @@ mat-toolbar-row {
   bottom: 20px;
   right: 20px;
   color: white;
+}
+
+.userName{
+  position: fixed;
+  right: 20px;
+}
+
+.toolbar-menu-icon{
+  margin-right: 16px;
+}
+
+.logo-image{
+  margin-right: 16px;
+}
+
+.container{
+  margin: 16px;
 }

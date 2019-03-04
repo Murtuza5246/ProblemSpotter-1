@@ -6,8 +6,9 @@ import {HomePageComponent} from './home-page/home-page.component';
 import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
-  {path: '', component: HomePageComponent},
+  {path: '', pathMatch: 'full', component: HomePageComponent},
   {path: 'login', component: UserLoginComponent},
+  {path: '**', redirectTo: ''}
 ];
 
 
