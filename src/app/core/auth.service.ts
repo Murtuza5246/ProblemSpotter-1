@@ -1,36 +1,49 @@
 import {Injectable} from '@angular/core';
 
-import {Router} from '@angular/router';
-import * as firebase from 'firebase/app';
-import {AngularFireAuth} from '@angular/fire/auth';
-import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
-
-import {Observable} from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-
+import * as firebase from 'firebase';
 import Timestamp = firebase.firestore.Timestamp;
+import {AngularFireAuth} from '@angular/fire/auth';
+import {Router} from '@angular/router';
 
 
 interface User {
   UID: string;
   Name?: string;
   Email: string;
-  Phone: string;
-  DOB: Timestamp;
-  Collage: string;
-  InstituteCode: number;
-  EnrollmentNumber: string;
-  Department: string;
-  PrincipalName: string;
-  AcademicYear: Timestamp;
+  Phone?: string;
+  DOB?: Timestamp;
+  Collage?: string;
+  InstituteCode?: number;
+  EnrollmentNumber?: string;
+  Department?: string;
+  PrincipalName?: string;
+  AcademicYear?: Timestamp;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
 
+  constructor(private afAuth: AngularFireAuth, private router: Router) {
+    this.afAuth.authState.subscribe((user: firebase.User) => {
+      if (user) {
+        console.log('User is sign in as ', user);
+      } else {
+        console.log('User is not sign in');
+      }
+    });
+  }
+
+  signinWithGoogle():void{
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .then((result: any) => {
+        this.router.navigate(['/']);
+        const user: firebase.User = result.user;
+        console.log('Push the user to the database', user);
+      });
+  }
 
 }
+
+
 
 

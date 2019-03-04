@@ -28,20 +28,29 @@ import {
   MatSnackBarModule,
   MatTabsModule,
   MatToolbarModule,
-  MatTooltipModule
+  MatTooltipModule,
 } from '@angular/material';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from '@angular/router';
+import {AuthService} from './core/auth.service';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 const appRoutes: Routes = [
   {
     path: '',
-    component: HomePageComponent
+    component: UserLoginComponent
   },
   {
     path: 'login',
     component: UserLoginComponent
+  },
+  {
+    path:'**',
+    redirectTo:'/'
   }
 ];
 
@@ -69,7 +78,8 @@ export const MaterialModule = [
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  ];
+  FlexLayoutModule,
+];
 
 @NgModule({
   declarations: [
@@ -82,6 +92,8 @@ export const MaterialModule = [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase),
     RouterModule.forRoot(appRoutes)
   ],
   exports: [
@@ -91,7 +103,9 @@ export const MaterialModule = [
     MatIconModule,
     MatCardModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
