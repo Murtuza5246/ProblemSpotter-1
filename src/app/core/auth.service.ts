@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 
 
 interface User {
-  UID: string;
+  UID?: string;
   Name?: string;
   Email: string;
   Phone?: string;
@@ -33,14 +33,24 @@ export class AuthService {
     });
   }
 
-  signInWithEmailAndPassword(email:string,password:string){
-    console.log('email is '+email+' \npassword is '+password);
+  signInWithEmailAndPassword(email: string, password: string) {
+    console.log('email is ' + email + ' \npassword is ' + password);
 
-    this.afAuth.auth.signInWithEmailAndPassword(email,password).then((result: any) => {
+    this.afAuth.auth.signInWithEmailAndPassword(email, password).then((result: any) => {
       this.router.navigate(['/']);
       const user: firebase.User = result.user;
       console.log('Push the user to the database', user);
     });
+  }
+
+  signUpWithEmailAndPassword(fullName: string, email: string, password: string, phoneNumber: string, date: string, collageName: string, enrollmentNumber, principalName: string, department: string) {
+
+    this.afAuth.auth.createUserAndRetrieveDataWithEmailAndPassword(email, password).then((result: any) => {
+      console.log("Result : \n"+result)
+    }).catch((error: any) => {
+      console.log("Error : \n"+error)
+    });
+    console.log('');
   }
 
 }

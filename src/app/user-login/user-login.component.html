@@ -1,10 +1,48 @@
 <div fxLayoutAlign="center center">
 
-  <mat-card class="main-container" fxLayout="column" fxLayoutAlign="center center">
+  <mat-card class="main-container" fxLayout="column" *ngIf="!isSignUp;else signUpTemplate"
+            fxLayoutAlign="center center">
     <div class=" content">
+      <mat-card-title>
+        <span>Sign in to continue.</span>
+      </mat-card-title>
+
+      <mat-form-field>
+        <input #inputEmail matInput placeholder="Enter your email" [formControl]="email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input #inputPassword matInput placeholder="Password" type="password" required>
+      </mat-form-field>
+
+      <div>
+        <button mat-flat-button color="accent"
+                (click)="AuthService.signInWithEmailAndPassword(inputEmail.value,inputPassword.value)">
+          Sign in
+        </button>
+
+        <button class="signUpButton" (click)="isSignUp = true" mat-button>Sign up</button>
+      </div>
+    </div>
+  </mat-card>
+
+  <ng-template #signUpTemplate>
+    <mat-card class="main-container" fxLayout="column" *ngIf="true" fxLayoutAlign="center center">
+      <div class=" content">
         <mat-card-title>
-          <span>Sign in to continue.</span>
+          <span>Sign up.</span>
         </mat-card-title>
+
+        <div>
+          <mat-form-field>
+            <input #inputFirstName matInput placeholder="First Name" type="text" required>
+          </mat-form-field>
+
+          <mat-form-field style="margin-left: 10px; width: auto">
+            <input #inputLastName matInput placeholder="Last Name" type="text" required>
+          </mat-form-field>
+        </div>
 
         <mat-form-field>
           <input #inputEmail matInput placeholder="Enter your email" [formControl]="email" required>
@@ -15,15 +53,61 @@
           <input #inputPassword matInput placeholder="Password" type="password" required>
         </mat-form-field>
 
+        <mat-form-field>
+          <input #inputPhoneNumber matInput placeholder="Phone number" type="tel" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input #inputDate matInput [matDatepicker]="picker" placeholder="Date of birth">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input #inputCollageName matInput placeholder="Collage Name" type="text" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input #inputEnrollmentNumber matInput placeholder="Enrollment Number" type="number" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input #inputPrincipalName matInput placeholder="HOD/Principal name" type="text" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select [(value)]="department" placeholder="Department">
+            <mat-option value="CE">Computer Engineering</mat-option>
+            <mat-option value="IT">Information Technology</mat-option>
+            <mat-option value="Civil">Civil Engineering</mat-option>
+            <mat-option value="Electronic">Electronic Engineering</mat-option>
+            <mat-option value="Chemical">Chemical Engineering</mat-option>
+            <mat-option value="Petrochemical">Petrochemical</mat-option>
+            <mat-option value="Environment">Environment Engineering</mat-option>
+          </mat-select>
+          <mat-hint align="end">select department ^</mat-hint>
+        </mat-form-field>
+
         <div>
           <button mat-flat-button color="accent"
-                  (click)="AuthService.signInWithEmailAndPassword(inputEmail.value,inputPassword.value)">
-            Sign in
+                  (click)="AuthService.signUpWithEmailAndPassword(
+                  getFullName(inputFirstName.value,inputLastName.value),
+                  inputEmail.value,
+                  inputPassword.value,
+                  inputPhoneNumber.value,
+                  inputDate.value,
+                  inputCollageName.value,
+                  inputEnrollmentNumber.value,
+                  inputPrincipalName.value,
+                  department)">
+
+            Sign up
           </button>
 
-          <button class="signUpButton" mat-button>Sign up</button>
+          <button class="signUpButton" (click)="isSignUp = false" mat-button>Sign in</button>
         </div>
-    </div>
-  </mat-card>
+      </div>
+    </mat-card>
+  </ng-template>
 
 </div>
