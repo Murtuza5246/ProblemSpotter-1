@@ -1,32 +1,29 @@
-
 <div fxLayoutAlign="center center">
 
-  <mat-card fxLayout="column" fxLayoutAlign="none center">
+  <mat-card class="main-container" fxLayout="column" fxLayoutAlign="center center">
+    <div class=" content">
+        <mat-card-title>
+          <span>Sign in to continue.</span>
+        </mat-card-title>
 
-    <div class="main-container">
+        <mat-form-field>
+          <input #inputEmail matInput placeholder="Enter your email" [formControl]="email" required>
+          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
 
-      <mat-card-title>
-        <span>Sign in to continue.</span>
-      </mat-card-title>
+        <mat-form-field>
+          <input #inputPassword matInput placeholder="Password" type="password" required>
+        </mat-form-field>
 
-      <mat-form-field>
-        <input #inputEmail matInput placeholder="Enter your email" [formControl]="email" required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
+        <div>
+          <button mat-flat-button color="accent"
+                  (click)="AuthService.signInWithEmailAndPassword(inputEmail.value,inputPassword.value)">
+            Sign in
+          </button>
 
-      <mat-form-field>
-        <input #inputPassword matInput placeholder="Password" type="password" required>
-      </mat-form-field>
-
-      <div>
-        <button mat-flat-button color="accent"
-                (click)="AuthService.signInWithEmailAndPassword(inputEmail.value,inputPassword.value)">
-          Sign in
-        </button>
-      </div>
-
+          <button class="signUpButton" mat-button>Sign up</button>
+        </div>
     </div>
-
   </mat-card>
 
 </div>
