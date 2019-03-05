@@ -4,14 +4,14 @@
     <img class="logo-image" src="../assets/image/logo.jpg" height="50px" width="70px" alt="Logo">
     <span>{{title}}</span>
 
-    <span class="userName">{{currentUser}}</span>
+    <span class="userName">{{AuthService.displayNameStream | async}}</span>
   </mat-toolbar>
 
   <div class="container">
     <router-outlet></router-outlet>
   </div>
   <span class="done">
-    <button mat-fab>
+    <button mat-fab *ngIf="AuthService.isSignedInStream">
       <mat-icon>add</mat-icon>
     </button>
   </span>

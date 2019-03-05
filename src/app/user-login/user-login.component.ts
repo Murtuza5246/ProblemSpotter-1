@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../core/auth.service';
 import {FormControl, Validators} from '@angular/forms';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
   selector: 'app-user-login',
@@ -25,7 +26,7 @@ export class UserLoginComponent implements OnInit {
     return firstName + " "+ lastName
   }
 
-  constructor(public AuthService: AuthService) {}
+  constructor(public AuthService: AuthService,public afAuth:AngularFireAuth) {}
 
   ngOnInit() {
   }
