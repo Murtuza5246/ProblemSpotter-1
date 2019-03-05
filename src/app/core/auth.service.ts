@@ -33,13 +33,14 @@ export class AuthService {
     });
   }
 
-  signinWithGoogle():void{
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then((result: any) => {
-        this.router.navigate(['/']);
-        const user: firebase.User = result.user;
-        console.log('Push the user to the database', user);
-      });
+  signInWithEmailAndPassword(email:string,password:string){
+    console.log('email is '+email+' \npassword is '+password);
+
+    this.afAuth.auth.signInWithEmailAndPassword(email,password).then((result: any) => {
+      this.router.navigate(['/']);
+      const user: firebase.User = result.user;
+      console.log('Push the user to the database', user);
+    });
   }
 
 }

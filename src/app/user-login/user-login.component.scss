@@ -1,15 +1,27 @@
-md-card{
+mat-card{
   padding: 30px 20px;
   margin: 20px 40px;
 #google-button{
   background-color: transparent;
-  background-image: url('/assets/images/google_signin_dark.png');
+  background-image: url('/assets/image/google_signin_dark.png');
   width: 191px;
   height: 46px;
   background-size: cover;
   background-repeat: no-repeat;
 &:active{
-   background-image: url('/assets/images/google_signin_dark_pressed.png');
+   background-image: url('/assets/image/google_signin_dark_pressed.png');
  }
 }
+}
+.main-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-container > * {
+  width: 100%;
+}
+
+.login-form{
+  flex-direction: column;
 }
