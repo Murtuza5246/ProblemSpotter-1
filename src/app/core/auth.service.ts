@@ -22,6 +22,8 @@ export class AuthService {
 
   user$: Observable<User>;
 
+  currentUserName:string = "Anonymous";
+
   constructor(
     private afAuth: AngularFireAuth,
     private router: Router,
@@ -39,6 +41,7 @@ export class AuthService {
         }
       })
     );
+
   }
 
   async googleSignIn() {
@@ -54,6 +57,8 @@ export class AuthService {
 
   private updateUserData(user: firebase.User) {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`user/${user.uid}`);
+
+    this.currentUserName = user.displayName;
 
     const data = {
       uid: user.uid,

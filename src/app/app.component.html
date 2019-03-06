@@ -1,44 +1,17 @@
-<!--<div>-->
-  <!--&lt;!&ndash;toolbar&ndash;&gt;-->
-  <!--<mat-toolbar color="primary">-->
-    <!--<img class="logo-image" src="../assets/image/logo.jpg" height="50px" width="70px" alt="Logo">-->
-    <!--<span>{{title}}</span>-->
+<div>
+  <!--toolbar-->
+  <mat-toolbar color="primary">
+    <img class="logo-image" src="../assets/image/logo.jpg" height="50px" width="70px" alt="Logo">
+    <span> Problem Spotter </span>
+    <span *ngIf="auth.user$ | async; let user" class="userName">
+      <!--suppress HtmlUnknownTarget -->
+      <img class="profile-picture" src="{{user.photoURL}}" alt="profile picture" width="40px" height="40px">
+    </span>
+  </mat-toolbar>
 
-    <!--<span  (click)="showLogin()" class="userName">{{AuthService.displayNameStream | async}}</span>-->
-  <!--</mat-toolbar>-->
-
-  <!--<div class="container">-->
-    <!--<router-outlet></router-outlet>-->
-  <!--</div>-->
-  <!--<span class="done">-->
-    <!--<button mat-fab >-->
-      <!--<mat-icon>add</mat-icon>-->
-    <!--</button>-->
-  <!--</span>-->
-<!--</div>-->
-
-<div *ngIf="auth.user$ | async; then authenticated else guest">
-<!-- template will replace this div -->
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
 </div>
 
-<!-- User NOT logged in -->
-<ng-template #guest>
-  <h3>Howdy, GUEST</h3>
-  <p>Login to get started...</p>
 
-  <button (click)="auth.googleSignIn()">
-    <i class="fa fa-google"></i> Connect Google
-  </button>
-
-</ng-template>
-
-
-<!-- User logged in -->
-<ng-template #authenticated>
-  <div *ngIf="auth.user$ | async as user">
-    <h3>Howdy, {{ user.displayName }}</h3>
-    <img  [src]="user.photoURL">
-    <p>UID: {{ user.uid }}</p>
-    <button (click)="auth.signOut()">Logout</button>
-  </div>
-</ng-template>
