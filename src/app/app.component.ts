@@ -10,5 +10,5 @@ import {AuthService} from './core/auth.service';
 })
 
 export class AppComponent {
-  constructor(public router: Router, public AuthService: AuthService) {  }
+  constructor(public router: Router, public auth: AuthService) {  }
 }

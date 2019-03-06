@@ -179,6 +179,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     AuthService,
+    AuthGuard,
     AngularFirestore,
   ],
   bootstrap: [AppComponent]
