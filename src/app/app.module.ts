@@ -10,6 +10,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {AuthService} from './core/auth.service';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireModule} from '@angular/fire';
+import {AngularFirestore} from '@angular/fire/firestore';
 import {environment} from '../environments/environment';
 
 import {A11yModule} from '@angular/cdk/a11y';
@@ -18,6 +19,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import {CdkStepperModule} from '@angular/cdk/stepper';
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
+
+import { AuthGuard } from './core/auth.guard';
 
 import {
   MatAutocompleteModule,
@@ -61,7 +64,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 const appRoutes: Routes = [
   {
     path: '',
-    component: UserLoginComponent
+    component: HomePageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
@@ -175,6 +179,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     AuthService,
+    AngularFirestore,
   ],
   bootstrap: [AppComponent]
 })

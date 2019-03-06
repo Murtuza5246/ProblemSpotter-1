@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from './core/auth.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,10 +10,5 @@ import {AuthService} from './core/auth.service';
 })
 
 export class AppComponent {
-  title = 'ProblemSpotter';
-  currentUser = 'Anonymous';
-
-  constructor(router: Router, public AuthService: AuthService) {
-
-  }
+  constructor(public router: Router, public AuthService: AuthService) {  }
 }
