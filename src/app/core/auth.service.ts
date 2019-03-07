@@ -13,7 +13,7 @@ import {
 } from '@angular/fire/firestore';
 
 import {Observable, of} from 'rxjs';
-import {switchMap} from 'rxjs/operators';
+import {switchMap, take} from 'rxjs/operators';
 
 import {User} from './user.model';
 
@@ -29,8 +29,6 @@ export class AuthService {
     private router: Router,
     private afs: AngularFirestore
   ) {
-    console.log("reached");
-
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {

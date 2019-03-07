@@ -27,6 +27,10 @@ mat-toolbar-row {
 }
 
 .profile-picture{
-  margin: auto;
+  align-content: flex-end;
   border-radius: 50%;
+}
+
+.title{
+  width: 100%;
 }

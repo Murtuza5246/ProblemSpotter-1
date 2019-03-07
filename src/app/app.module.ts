@@ -11,6 +11,7 @@ import {AuthService} from './core/auth.service';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFirestore} from '@angular/fire/firestore';
+import { FirestoreSettingsToken} from '@angular/fire/firestore';
 import {environment} from '../environments/environment';
 
 import {A11yModule} from '@angular/cdk/a11y';
@@ -181,6 +182,7 @@ const appRoutes: Routes = [
     AuthService,
     AuthGuard,
     AngularFirestore,
+    {provide:FirestoreSettingsToken,useValue:{}}
   ],
   bootstrap: [AppComponent]
 })

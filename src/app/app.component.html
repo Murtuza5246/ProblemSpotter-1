@@ -1,12 +1,10 @@
 <div>
   <!--toolbar-->
-  <mat-toolbar color="primary">
+  <mat-toolbar color="primary" *ngIf="auth.user$ | async; let user">
     <img class="logo-image" src="../assets/image/logo.jpg" height="50px" width="70px" alt="Logo">
-    <span> Problem Spotter </span>
-    <span *ngIf="auth.user$ | async; let user" class="userName">
-      <!--suppress HtmlUnknownTarget -->
-      <img class="profile-picture" src="{{user.photoURL}}" alt="profile picture" width="40px" height="40px">
-    </span>
+    <span class="title"> Problem Spotter </span>
+    <!--suppress HtmlUnknownTarget -->
+    <img class="profile-picture" src="{{user.photoURL}}" alt="profile picture" width="40px" height="40px">
   </mat-toolbar>
 
   <div class="container">
