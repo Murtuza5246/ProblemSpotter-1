@@ -1,15 +1,43 @@
 <div>
-  <!--toolbar-->
-  <mat-toolbar color="primary" *ngIf="auth.user$ | async; let user">
-    <img class="logo-image" src="../assets/image/logo.jpg" height="50px" width="70px" alt="Logo">
-    <span class="title"> Problem Spotter </span>
-    <!--suppress HtmlUnknownTarget -->
-    <img class="profile-picture" src="{{user.photoURL}}" alt="profile picture" width="40px" height="40px">
-  </mat-toolbar>
+  <mat-sidenav #sidenav>
+    <mat-toolbar color="primary" (click)="sidenav.toggle()">
+      Options
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/']">
+        Home
+      </a>
+      <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/']">
+        Recent statement
+      </a>
+      <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/']">
+        Saved statement
+      </a>
+      <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/']">
+        Current Project
+      </a>
+      <hr>
+      <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/']">
+       Referral program
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-container>
+    <!--toolbar-->
+    <mat-toolbar color="primary" *ngIf="auth.user$ | async; let user">
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+
+      <img class="logo-image" src="../assets/image/logo.jpg" (click)="router.navigate([''])" height="50px" width="70px"
+           alt="Logo">
+      <span class="title"> Problem Spotter </span>
+      <!--suppress HtmlUnknownTarget -->
+      <img class="profile-picture" src="{{user.photoURL}}" (click)="router.navigate(['login'])" alt="profile picture"
+           width="40px" height="40px">
+    </mat-toolbar>
+  </mat-sidenav-container>
 
   <div class="container">
     <router-outlet></router-outlet>
   </div>
 </div>
-
-
