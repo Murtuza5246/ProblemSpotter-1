@@ -1,28 +1,9 @@
 
-mat-card {
-  width: auto;
-}
-
-.main-container {
-  display: flex;
-  margin: auto;
-  flex-direction: column;
-}
-
-.content {
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.main-container > * {
-  width: 100%;
-}
-
-.login-form {
-  flex-direction: column;
-}
-
 .signUpButton {
   margin-left: 1%;
+}
+
+.material-card{
+  width: 90%;
+  margin: auto;
 }

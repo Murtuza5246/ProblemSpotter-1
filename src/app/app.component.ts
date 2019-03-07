@@ -8,10 +8,6 @@ import {AuthService} from './core/auth.service';
 })
 
 export class AppComponent {
-  displayName = "Anonymouse";
-
-  constructor(public auth: AuthService) {
-  }
-
+  constructor(public auth: AuthService) {}
 
 }
