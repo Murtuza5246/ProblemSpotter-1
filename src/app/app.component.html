@@ -1,9 +1,9 @@
 <div>
   <mat-sidenav #sidenav>
-    <mat-toolbar color="primary" (click)="sidenav.toggle()">
-      <mat-icon>cancel</mat-icon>
+    <mat-toolbar (click)="sidenav.toggle()">
+      <mat-icon>close</mat-icon>
     </mat-toolbar>
-    <mat-nav-list>
+    <mat-nav-list >
       <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/']">
         Home
       </a>
@@ -21,7 +21,7 @@
         Help
       </a>
       <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/']">
-       Referral program
+        Referral program
       </a>
       <hr>
       <a mat-list-item (click)="sidenav.toggle(); auth.signOut()" [routerLink]="['/login']">
@@ -36,7 +36,7 @@
       <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
 
       <!--<img class="logo-image" src="../assets/image/logo.jpg" (click)="router.navigate([''])" height="50px" width="70px"-->
-           <!--alt="Logo">-->
+      <!--alt="Logo">-->
 
       <span class="title"> Problem Spotter </span>
       <!--suppress HtmlUnknownTarget -->
