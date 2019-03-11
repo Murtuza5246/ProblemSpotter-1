@@ -1,3 +1,7 @@
-<p>
-  home-page works!
-</p>
+<div *ngFor="let statement of statements">
+
+  <mat-card>
+    <h3>{{statement.title}}</h3>
+  </mat-card>
+
+</div>
