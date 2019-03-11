@@ -1,4 +1,4 @@
-<h3 align="center" class="quote-banner">Without hard work you cannot execute your smart work.</h3>
+<h3 class="quote-banner">Without hard work you cannot execute your smart work.</h3>
 
 <mat-card class="container material-card">
   <div *ngIf="auth.user$ | async; then authenticated else guest">
@@ -27,42 +27,36 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Phone number" type="tel" required>
+          <input matInput placeholder="Phone number" value="{{ user.phoneNumber }}" type="tel" required>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Date of birth">
+          <input matInput [matDatepicker]="picker" value="{{ user.dateOfBirth }}" placeholder="Date of birth">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Collage Name" type="text" required>
+          <input matInput placeholder="Collage Name" value="{{ user.collage }}" type="text" required>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Enrollment Number" type="number" required>
+          <input matInput placeholder="Enrollment Number" value="{{ user.enrollmentNumber }}" type="number" required>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="HOD/Principal name" type="text" required>
+          <input matInput placeholder="HOD/Principal name" value="{{ user.principalName }}" type="text" required>
         </mat-form-field>
 
         <mat-form-field>
-          <mat-select [(value)]="department" placeholder="Department">
-            <mat-option value="CE">Computer Engineering</mat-option>
-            <mat-option value="IT">Information Technology</mat-option>
+          <mat-select [(value)]="department"  placeholder="Department">
             <mat-option value="Civil">Civil Engineering</mat-option>
-            <mat-option value="Electronic">Electronic Engineering</mat-option>
-            <mat-option value="Chemical">Chemical Engineering</mat-option>
-            <mat-option value="Petrochemical">Petrochemical</mat-option>
-            <mat-option value="Environment">Environment Engineering</mat-option>
           </mat-select>
           <mat-hint align="end">select department ^</mat-hint>
         </mat-form-field>
       </div>
 
-      <button mat-flat-button color="accent" (click)="auth.signOut()">Update</button>
+      <button  mat-flat-button color="accent" (click)="auth.signOut()">Update</button>
     </div>
 
   </div>

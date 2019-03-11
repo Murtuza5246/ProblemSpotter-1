@@ -34,3 +34,10 @@
 .form{
   margin: 16px 0;
 }
+
+@media (min-width: 600px) {
+  .container{
+    width: 600px;
+  }
+}
+
