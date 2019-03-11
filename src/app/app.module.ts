@@ -62,6 +62,7 @@ import {
 } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { HelpComponent } from './help/help.component';
 
 const appRoutes: Routes = [
   {
@@ -83,7 +84,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     UserLoginComponent,
-    HomePageComponent
+    HomePageComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,
