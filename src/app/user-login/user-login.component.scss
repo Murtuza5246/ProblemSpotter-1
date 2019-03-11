@@ -3,25 +3,34 @@
   margin-left: 1%;
 }
 
-.material-card{
+.material-card {
   background-color: #FFFFFF;
   width: 90%;
   margin: 16px auto;
 }
 
-.google-button{
+.google-button {
   background-color: transparent;
   background-image: url('/assets/image/google_signin_dark.png');
   width: 191px;
   height: 46px;
   background-size: cover;
   background-repeat: no-repeat;
-  &:active{
+
+  &:active {
     background-image: url('/assets/image/google_signin_dark_pressed.png');
   }
 }
 
-.quote-banner{
-
+.quote-banner {
   margin: 8px;
+}
+
+.flex-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.form{
+  margin: 16px 0;
 }

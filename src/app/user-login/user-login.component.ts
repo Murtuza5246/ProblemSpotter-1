@@ -9,7 +9,10 @@ import {AuthService} from '../core/auth.service';
 
 export class UserLoginComponent implements OnInit {
 
-  constructor(public auth: AuthService) {}
+  department = 'CE';
+
+  constructor(public auth: AuthService) {
+  }
 
   ngOnInit() {
   }

@@ -1,7 +1,7 @@
 <h3 align="center" class="quote-banner">Without hard work you cannot execute your smart work.</h3>
 
 <mat-card class="container material-card">
-  <div  *ngIf="auth.user$ | async; then authenticated else guest">
+  <div *ngIf="auth.user$ | async; then authenticated else guest">
     <!-- template will replace this div -->
   </div>
 </mat-card>
@@ -16,9 +16,54 @@
 <!-- User logged in -->
 <ng-template #authenticated>
   <div *ngIf="auth.user$ | async as user">
-    <h3>Howdy, {{ user.displayName }}</h3>
-    <img [src]="user.photoURL" alt="profile picture">
-    <p>UID: {{ user.uid }}</p>
-    <button mat-flat-button color="accent" (click)="auth.signOut()">Logout</button>
+
+    <div class="flex-container">
+      <h3>Hello!!, {{ user.displayName }}</h3>
+      <p style="margin-top: -8px" class="mat-small">UID: {{ user.uid }}</p>
+
+      <div class="flex-container form">
+        <mat-form-field>
+          <input matInput placeholder="Your email" value="{{ user.email }}" disabled>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Phone number" type="tel" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Date of birth">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Collage Name" type="text" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Enrollment Number" type="number" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="HOD/Principal name" type="text" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select [(value)]="department" placeholder="Department">
+            <mat-option value="CE">Computer Engineering</mat-option>
+            <mat-option value="IT">Information Technology</mat-option>
+            <mat-option value="Civil">Civil Engineering</mat-option>
+            <mat-option value="Electronic">Electronic Engineering</mat-option>
+            <mat-option value="Chemical">Chemical Engineering</mat-option>
+            <mat-option value="Petrochemical">Petrochemical</mat-option>
+            <mat-option value="Environment">Environment Engineering</mat-option>
+          </mat-select>
+          <mat-hint align="end">select department ^</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <button mat-flat-button color="accent" (click)="auth.signOut()">Update</button>
+    </div>
+
   </div>
 </ng-template>
