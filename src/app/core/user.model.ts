@@ -1,3 +1,6 @@
+// @ts-ignore
+import Timestamp = firebase.firestore.Timestamp;
+
 export interface User {
   uid: string;
   email: string;
@@ -6,7 +9,7 @@ export interface User {
 
   //other fields from forms.
   phoneNumber?: string;
-  dateOfBirth?: string;
+  dateOfBirth?: Timestamp;
   collage?: string;
   instituteCode?: number;
   enrollmentNumber?: number;

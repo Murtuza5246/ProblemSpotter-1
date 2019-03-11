@@ -20,20 +20,20 @@
       <h3>Hello!!, {{ user.displayName }}</h3>
       <p style="margin-top: -8px" class="mat-small">UID: {{ user.uid }}</p>
 
-      <div class="flex-container form">
+      <div class="flex-container form" >
 
         <mat-form-field>
           <input matInput placeholder="Your email" value="{{ user.email }}" disabled>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Phone number" [(ngModel)]="phoneNumber" value="{{ user.phoneNumber }}" type="tel"
+          <input matInput placeholder="Phone number" [(ngModel)]="phoneNumber"  value="{{ user.phoneNumber }}" type="tel"
                  required>
         </mat-form-field>
 
         <mat-form-field>
           <input matInput [matDatepicker]="picker" [(ngModel)]="dateOfBirth" value="{{ user.dateOfBirth }}"
-                 placeholder="Date of birth">
+                 placeholder="{{dateOfBirth}}">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
@@ -56,6 +56,11 @@
         <mat-form-field>
           <input matInput placeholder="HOD/Principal name" [(ngModel)]="principalName" value="{{ user.principalName }}"
                  type="text" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Academic Year" [(ngModel)]="academicYear" value="{{ user.academicYear }}"
+                 type="number" required>
         </mat-form-field>
 
         <mat-form-field>

@@ -22,7 +22,7 @@ export class AuthService {
 
   user$: Observable<User>;
 
-  currentUserName:string = "Anonymous";
+  currentUserName: string = 'Anonymous';
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -67,8 +67,9 @@ export class AuthService {
     return userRef.set(data, {merge: true});
   }
 
-  public updateUserProfileData(){
-
+  public updateUserProfileData(user, uid) {
+    const userRef = this.afs.doc(`user/${uid}`);
+    return userRef.set(user, {merge: true});
   }
 
 }
