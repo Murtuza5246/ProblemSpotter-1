@@ -11,7 +11,7 @@ import {AuthService} from './core/auth.service';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFirestore} from '@angular/fire/firestore';
-import { FirestoreSettingsToken} from '@angular/fire/firestore';
+import {FirestoreSettingsToken} from '@angular/fire/firestore';
 import {environment} from '../environments/environment';
 
 import {A11yModule} from '@angular/cdk/a11y';
@@ -21,7 +21,7 @@ import {CdkStepperModule} from '@angular/cdk/stepper';
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
 
-import { AuthGuard } from './core/auth.guard';
+import {AuthGuard} from './core/auth.guard';
 
 import {
   MatAutocompleteModule,
@@ -61,8 +61,8 @@ import {
   MatTreeModule,
 } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
-import { FormsModule } from '@angular/forms';
-import { HelpComponent } from './help/help.component';
+import {FormsModule} from '@angular/forms';
+import {HelpComponent} from './help/help.component';
 
 const appRoutes: Routes = [
   {
@@ -75,9 +75,14 @@ const appRoutes: Routes = [
     component: UserLoginComponent
   },
   {
-    path:'**',
-    redirectTo:'/'
-  }
+    path: 'help',
+    component: HelpComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: '**',
+    redirectTo: '/'
+  },
 ];
 
 @NgModule({
@@ -186,7 +191,7 @@ const appRoutes: Routes = [
     AuthService,
     AuthGuard,
     AngularFirestore,
-    {provide:FirestoreSettingsToken,useValue:{}}
+    {provide: FirestoreSettingsToken, useValue: {}}
   ],
   bootstrap: [AppComponent]
 })
