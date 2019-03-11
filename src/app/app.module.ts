@@ -61,6 +61,7 @@ import {
   MatTreeModule,
 } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   {
@@ -92,6 +93,7 @@ const appRoutes: Routes = [
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
     RouterModule.forRoot(appRoutes),
+    FormsModule,
 
     A11yModule,
     CdkStepperModule,

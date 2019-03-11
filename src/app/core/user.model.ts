@@ -12,5 +12,5 @@ export interface User {
   enrollmentNumber?: number;
   department?: string;
   principalName?: string;
-  academicYear?: number
+  academicYear?: string
 }

@@ -27,29 +27,35 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Phone number" value="{{ user.phoneNumber }}" type="tel" required>
+          <input matInput placeholder="Phone number" [(ngModel)]="phoneNumber" value="{{ user.phoneNumber }}" type="tel"
+                 required>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput [matDatepicker]="picker" value="{{ user.dateOfBirth }}" placeholder="Date of birth">
+          <input matInput [matDatepicker]="picker" [(ngModel)]="dateOfBirth" value="{{ user.dateOfBirth }}"
+                 placeholder="Date of birth">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Collage Name" value="{{ user.collage }}" type="text" required>
+          <input matInput placeholder="Collage Name" [(ngModel)]="collageName" value="{{ user.collage }}" type="text"
+                 required>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Enrollment Number" value="{{ user.enrollmentNumber }}" type="number" required>
+          <input matInput placeholder="Enrollment Number" [(ngModel)]="enrollmentNumber" value="{{ user.enrollmentNumber }}"
+                 type="number" required>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Institute Code" value="{{ user.instituteCode }}" type="number" required>
+          <input matInput placeholder="Institute Code" [(ngModel)]="instituteCode" value="{{ user.instituteCode }}"
+                 type="number" required>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="HOD/Principal name" value="{{ user.principalName }}" type="text" required>
+          <input matInput placeholder="HOD/Principal name" [(ngModel)]="principalName" value="{{ user.principalName }}"
+                 type="text" required>
         </mat-form-field>
 
         <mat-form-field>
@@ -57,12 +63,13 @@
           <!--<mat-option value="Civil">Civil Engineering</mat-option>-->
           <!--</mat-select>-->
           <!--<mat-hint align="end">select department ^</mat-hint>-->
-          <input matInput placeholder="Department" value="Civil Engineering" disabled type="text" required>
+          <input matInput placeholder="Department" [(ngModel)]="department" value="Civil Engineering" disabled
+                 type="text" required>
         </mat-form-field>
 
       </div>
 
-      <button mat-flat-button color="accent" type="button">Update</button>
+      <button mat-flat-button color="accent" (click)="onSubmit()" type="button">Update</button>
 
     </div>
   </div>

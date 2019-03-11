@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../core/auth.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../core/user.model';
+import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-login',
@@ -11,32 +11,43 @@ import {User} from '../core/user.model';
 
 export class UserLoginComponent implements OnInit {
 
-  userForm: FormGroup;
-  user:User;
+  phoneNumber: string;
+  dateOfBirth: string;
+  collageName: string;
+  instituteCode: string;
+  department: string;
+  academicYear: string;
+  principalName: string;
+  enrollmentNumber: string;
 
-  constructor(public auth: AuthService,private fb:FormBuilder) {
+  constructor(public auth: AuthService) {
   }
 
   ngOnInit() {
-  }
+    this.auth.user$.subscribe((user: User) => {
+      this.phoneNumber = user.phoneNumber;
+      this.dateOfBirth = user.dateOfBirth;
+      this.collageName = user.collage;
+      this.instituteCode = String(user.instituteCode);
+      this.department = user.department;
+      this.academicYear = user.academicYear;
+      this.principalName = user.principalName;
+      this.enrollmentNumber = String(user.enrollmentNumber);
 
-  createForm(){
-    this.userForm = this.fb.group({
-      email:[this.user.email ,Validators.required]
     });
   }
 
-  onSubmit(value) {
-    let phoneNumber = value.phoneNumber;
-    let dateOfBirth = value.dateOfBirth;
-    let collageName = value.collageName;
-    let instituteCode = value;
-    let department = value.department;
-    let academicYear = value.academicYear;
-    let principalName = value.principalName;
-    let enrollmentNumber = value.enrollmentNumber;
+  onSubmit() {
+    let phoneNumber = this.phoneNumber;
+    let dateOfBirth = this.dateOfBirth;
+    let collageName = this.collageName;
+    let instituteCode = Number(this.instituteCode);
+    let department = this.department;
+    let academicYear = this.academicYear;
+    let principalName = this.principalName;
+    let enrollmentNumber = Number(this.enrollmentNumber);
 
-    console.log(phoneNumber,dateOfBirth,collageName,instituteCode,department,academicYear,principalName,enrollmentNumber)
+    console.log(phoneNumber, dateOfBirth, collageName, instituteCode, department, academicYear, principalName, enrollmentNumber);
 
   }
 }

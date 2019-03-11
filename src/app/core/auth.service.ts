@@ -13,7 +13,7 @@ import {
 } from '@angular/fire/firestore';
 
 import {Observable, of} from 'rxjs';
-import {switchMap, take} from 'rxjs/operators';
+import {switchMap} from 'rxjs/operators';
 
 import {User} from './user.model';
 
@@ -67,6 +67,9 @@ export class AuthService {
     return userRef.set(data, {merge: true});
   }
 
+  public updateUserProfileData(){
+
+  }
 
 }
 
