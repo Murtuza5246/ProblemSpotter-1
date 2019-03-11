@@ -13,6 +13,8 @@ export class HomePageComponent implements OnInit {
 
   statements = Array<Statement>();
 
+  colors = ['#FFFFFF', '#FAFAD2'];
+
   constructor(private router: Router, private auth: AuthService, private afs: AngularFirestore) {
 
     afs.collection('statements').get().subscribe(value => {
@@ -29,9 +31,9 @@ export class HomePageComponent implements OnInit {
             result.get('uploaderUID')
           );
 
-          this.statements.push(statement)
+          this.statements.push(statement);
         });
-        console.log(this.statements)
+        console.log(this.statements);
       } else {
         console.log('Data not found.');
       }
