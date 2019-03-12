@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../core/auth.service';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {Statement} from '../core/statement.model';
+import {StatementService} from '../core/statement.service';
 
 @Component({
   selector: 'app-home-page',
@@ -11,33 +11,11 @@ import {Statement} from '../core/statement.model';
 })
 export class HomePageComponent implements OnInit {
 
-  statements = Array<Statement>();
-
   colors = ['#FFFFFF', '#FAFAD2'];
 
-  constructor(private router: Router, private auth: AuthService, private afs: AngularFirestore) {
+  constructor(private router: Router, private auth: AuthService, private afs: AngularFirestore, public StatementService: StatementService) {
 
-    afs.collection('statements').get().subscribe(value => {
-      if (!value.empty) {
-        value.forEach(result => {
 
-          let statement = new Statement(
-            result.id,
-            result.get('title'),
-            result.get('date'),
-            result.get('description'),
-            result.get('fields'),
-            result.get('status'),
-            result.get('uploaderUID')
-          );
-
-          this.statements.push(statement);
-        });
-        console.log(this.statements);
-      } else {
-        console.log('Data not found.');
-      }
-    });
 
   }
 

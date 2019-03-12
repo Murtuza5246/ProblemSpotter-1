@@ -1,4 +1,4 @@
-<div *ngFor="let statement of statements">
+<div *ngFor="let statement of StatementService.statements$">
   <div>
     <mat-card [ngStyle]="{'background-color': colors[statement.status]}" [routerLink]="['/statement',statement.id]" class="card card-container">
       <div class="card-container-horizontal">

@@ -64,6 +64,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {FormsModule} from '@angular/forms';
 import {HelpComponent} from './help/help.component';
 import {StatementComponent} from './statement/statement.component';
+import {StatementService} from './core/statement.service';
 
 const appRoutes: Routes = [
   {
@@ -195,6 +196,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     AuthService,
+    StatementService,
     AuthGuard,
     AngularFirestore,
     {provide: FirestoreSettingsToken, useValue: {}}
