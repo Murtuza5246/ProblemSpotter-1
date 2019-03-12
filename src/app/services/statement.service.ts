@@ -43,12 +43,21 @@ export class StatementService {
 
   saveStatement(statement: Statement) {
     let statementObject = {
-      id: statement.id,
+      statementID: statement.id,
       title: statement.title,
       status: statement.status,
-      fields: statement.field
+      fields: statement.fields
     };
-    this.afs.collection('user').doc(this.auth.userUID).collection('saved').add(statementObject);
+    console.log('save statement ' + statement.fields);
+
+    this.afs.collection('user').doc(this.auth.userUID).collection('saved').add(statementObject).then(value => {
+      let idData = {
+        id: value.id
+      };
+      this.afs.collection('user').doc(this.auth.userUID).collection('history').doc(value.id).set(idData, {merge: true});
+    }).catch(reason => {
+      console.log('Reason : ' + reason);
+    });
   }
 
   saveRecent(recent: Recent) {
