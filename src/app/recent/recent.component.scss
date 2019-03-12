@@ -1,0 +1,22 @@
+.card{
+  margin-top: 16px;
+}
+
+.card-container-horizontal{
+  display: flex;
+  flex-direction: row;
+}
+
+.card-container-horizontal-reversed{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.card-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.title{
+  width: 100%;
+}

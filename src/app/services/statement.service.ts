@@ -47,5 +47,30 @@ export class StatementService {
     this.afs.collection('user').doc(this.auth.userUID).collection('history').add(statementObject);
   }
 
+  saveStatement(statement: Statement) {
+    let statementObject = {
+      id: statement.id,
+      title: statement.title,
+      status: statement.status,
+      fields: statement.field
+    };
+    this.afs.collection('user').doc(this.auth.userUID).collection('saved').add(statementObject);
+  }
+
+  saveRecent(recent: Recent) {
+    this.afs.collection('user').doc(this.auth.userUID).collection('history').doc(recent.id).get().subscribe(value => {
+      let statement = new Statement(
+        value.id,
+        value.get('title'),
+        value.get('date'),
+        value.get('description'),
+        value.get('fields'),
+        value.get('status'),
+        value.get('uploaderUID')
+      );
+      this.saveStatement(statement);
+    });
+  }
+
 }
 

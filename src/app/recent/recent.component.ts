@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {StatementService} from '../services/statement.service';
+import {Recent} from '../model/recent.model';
 
 @Component({
   selector: 'app-recent',
@@ -15,4 +16,7 @@ export class RecentComponent implements OnInit {
   ngOnInit() {
   }
 
+  onClickCard(recent: Recent) {
+
+  }
 }

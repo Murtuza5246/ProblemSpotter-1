@@ -9,7 +9,7 @@
         <p mat-card-subtitle>{{statement.description.substring(0, 150)}}</p>
       </div>
       <div class="card-container-horizontal">
-        <button mat-flat-button color="accent">Save</button>
+        <button mat-flat-button (click)="statementService.saveStatement(statement)" color="accent">Save</button>
         <button style="margin-left: 8px" mat-flat-button>Ask</button>
       </div>
     </mat-card>
