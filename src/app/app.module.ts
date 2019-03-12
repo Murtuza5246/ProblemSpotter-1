@@ -63,6 +63,7 @@ import {
 import {ReactiveFormsModule} from '@angular/forms';
 import {FormsModule} from '@angular/forms';
 import {HelpComponent} from './help/help.component';
+import {StatementComponent} from './statement/statement.component';
 
 const appRoutes: Routes = [
   {
@@ -80,6 +81,10 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'statement/:id',
+    component: StatementComponent
+  },
+  {
     path: '**',
     redirectTo: '/'
   },
@@ -90,7 +95,8 @@ const appRoutes: Routes = [
     AppComponent,
     UserLoginComponent,
     HomePageComponent,
-    HelpComponent
+    HelpComponent,
+    StatementComponent,
   ],
   imports: [
     BrowserModule,

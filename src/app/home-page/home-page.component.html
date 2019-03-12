@@ -1,6 +1,5 @@
 <div *ngFor="let statement of statements">
-
-  <div >
+  <div>
     <mat-card [ngStyle]="{'background-color': colors[statement.status]}" class="card card-container">
       <div class="card-container-horizontal">
         <p class="title" mat-card-title>{{statement.title}}</p>
@@ -11,7 +10,7 @@
       </div>
       <div class="card-container-horizontal">
         <button mat-flat-button color="accent">Save</button>
-        <button style="margin-left: 8px"  mat-flat-button>Ask</button>
+        <button style="margin-left: 8px" mat-flat-button>Ask</button>
       </div>
     </mat-card>
   </div>
