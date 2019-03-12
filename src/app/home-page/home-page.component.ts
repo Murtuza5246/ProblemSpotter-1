@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {StatementService} from '../services/statement.service';
 import {Statement} from '../model/statement.model';
+import {FilterDialogComponent} from './filter-dialog/filter-dialog.component';
+import {MatDialog} from '@angular/material';
+
 
 @Component({
   selector: 'app-home-page',
@@ -12,9 +15,24 @@ export class HomePageComponent implements OnInit {
 
   colors = ['#FFFFFF', '#FAFAD2'];
 
+  name: string;
+  animal: string;
+
   isButtonClicked = false;
 
-  constructor(private router: Router, public statementService: StatementService) {
+  constructor(private router: Router, public statementService: StatementService, public dialog: MatDialog) {
+
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(FilterDialogComponent, {
+      data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+    });
 
   }
 
@@ -30,3 +48,4 @@ export class HomePageComponent implements OnInit {
   }
 
 }
+

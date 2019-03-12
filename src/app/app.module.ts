@@ -67,6 +67,7 @@ import {StatementComponent} from './statement/statement.component';
 import {StatementService} from './services/statement.service';
 import {RecentComponent} from './recent/recent.component';
 import {SavedStatementsComponent} from './saved-statements/saved-statements.component';
+import { FilterDialogComponent } from './home-page/filter-dialog/filter-dialog.component';
 
 const appRoutes: Routes = [
   {
@@ -105,6 +106,9 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
+  entryComponents:[
+    FilterDialogComponent
+  ],
   declarations: [
     AppComponent,
     UserLoginComponent,
@@ -113,6 +117,7 @@ const appRoutes: Routes = [
     StatementComponent,
     RecentComponent,
     SavedStatementsComponent,
+    FilterDialogComponent,
   ],
   imports: [
     BrowserModule,

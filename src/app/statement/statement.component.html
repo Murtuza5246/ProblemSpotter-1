@@ -1,3 +1,24 @@
-<p mat-card-title>
-  {{statementService.selectedStatement.title}}
-</p>
+<div class="jumbotron">
+  <h3 class="display-5">{{statement.title}}</h3>
+  <div class="fields-chip">
+    <div *ngFor="let field of statement.fields">
+      <span class="badge" mat-chip>{{field}}</span>
+    </div>
+
+  </div>
+  <p>
+    <small>{{statement.date.toDate().toUTCString()}}</small>
+  </p>
+  <hr class="my-1">
+  <p>{{statement.description}}</p>
+  <hr class="my-1">
+  <h6>Contents</h6>
+  <div>
+    <img src="../../assets/image/google_signin_dark.png" width="200" alt="not loaded">
+  </div>
+  <hr class="my-1">
+  <button mat-flat-button class="claim-button" color="accent">
+    <mat-icon>done</mat-icon>
+    Claim for already solved
+  </button>
+</div>

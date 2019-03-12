@@ -13,10 +13,14 @@ export class StatementService {
   savedStatement$: Observable<any>;
   selectedStatement: Statement;
 
+  filters = new Set();
+
   constructor(
     private auth: AuthService,
     private afs: AngularFirestore
   ) {
+
+    this.filters.add('SURVEYING').add("aasfsad").add(' dsfgsdfgklsajgi').add('afshndfujs').add('igjhitjghirhfuhgv');
 
     //adding all statements.
     this.allStatements$ = afs.collection('statements').valueChanges();
@@ -32,7 +36,7 @@ export class StatementService {
     let statementObject = {
       statementID: statement.id,
       title: statement.title,
-      status:statement.status
+      status: statement.status
     };
     this.afs.collection('user').doc(this.auth.userUID).collection('history').add(statementObject).then(value => {
       let idData = {
@@ -48,10 +52,6 @@ export class StatementService {
       title: statement.title,
       status: statement.status,
     };
-
-    console.log(statementObject.statementID);
-    console.log(statementObject.title);
-    console.log(statementObject.status);
 
     this.afs.collection('user').doc(this.auth.userUID).collection('saved').add(statementObject).then(value => {
       let idData = {

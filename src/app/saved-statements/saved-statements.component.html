@@ -3,11 +3,10 @@
     <mat-card (click)="onClickCard(statement)" class="card card-container">
       <div class="card-container-horizontal">
         <p class="title" mat-card-title>{{statement.title}}</p>
-        <button mat-button (click)="statementService.saveStatement(statement)" color="accent">add solution</button>
+        <mat-icon color="warn">close</mat-icon>
       </div>
-      <div class="card-container-horizontal">
-        <!--<p mat-card-subtitle>{{statement.description.substring(0, 150)}}</p>-->
-
+      <div class="card-container-horizontal-reversed">
+        <button class="btn btn-outline-primary" (click)="statementService.saveStatement(statement)" color="accent">add solution</button>
       </div>
     </mat-card>
   </div>
