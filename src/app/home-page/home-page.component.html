@@ -1,4 +1,4 @@
-<div *ngFor="let statement of statementService.statements$">
+<div *ngFor="let statement of statementService.allStatements$">
   <div>
     <mat-card [ngStyle]="{'background-color': colors[statement.status]}" (click)="onClickCard(statement)" class="card card-container">
       <div class="card-container-horizontal">

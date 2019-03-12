@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
 import {AuthService} from './auth.service';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {Statement} from './statement.model';
+import {Statement} from '../model/statement.model';
+import {Recent} from '../model/recent.model';
 
 @Injectable()
 export class StatementService {
 
-  statements$ = Array<Statement>();
-
+  allStatements$ = Array<Statement>();
+  recentStatement$ = Array<Recent>();
   selectedStatement: Statement;
 
   constructor(
@@ -15,9 +16,10 @@ export class StatementService {
     private afs: AngularFirestore
   ) {
 
+    //adding all statements.
     this.afs.collection('statements').get().subscribe(value => {
       value.forEach(result => {
-        this.statements$.push(new Statement(
+        this.allStatements$.push(new Statement(
           result.id,
           result.get('title'),
           result.get('date'),
@@ -29,6 +31,12 @@ export class StatementService {
       });
     });
 
+    //adding recent statements.
+    this.afs.collection('user').doc(this.auth.userUID).collection('history').get().subscribe(value => {
+      value.forEach(result => {
+        this.recentStatement$.push(new Recent(result.id, result.get('statementID'), result.get('title')));
+      });
+    });
   }
 
   addStatementToHistory(statement: Statement) {
@@ -40,3 +48,4 @@ export class StatementService {
   }
 
 }
+

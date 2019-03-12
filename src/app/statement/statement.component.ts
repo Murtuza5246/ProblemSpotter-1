@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {StatementService} from '../core/statement.service';
-import {Statement} from '../core/statement.model';
+import {StatementService} from '../services/statement.service';
+import {Statement} from '../model/statement.model';
 
 // @ts-ignore
 

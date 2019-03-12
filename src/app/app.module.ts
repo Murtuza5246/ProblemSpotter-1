@@ -7,7 +7,7 @@ import {HomePageComponent} from './home-page/home-page.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from '@angular/router';
-import {AuthService} from './core/auth.service';
+import {AuthService} from './services/auth.service';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFirestore} from '@angular/fire/firestore';
@@ -64,7 +64,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {FormsModule} from '@angular/forms';
 import {HelpComponent} from './help/help.component';
 import {StatementComponent} from './statement/statement.component';
-import {StatementService} from './core/statement.service';
+import {StatementService} from './services/statement.service';
+import {RecentComponent} from './recent/recent.component';
 
 const appRoutes: Routes = [
   {
@@ -83,7 +84,13 @@ const appRoutes: Routes = [
   },
   {
     path: 'statement',
-    component: StatementComponent
+    component: StatementComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'recent',
+    component: RecentComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '**',
@@ -98,6 +105,7 @@ const appRoutes: Routes = [
     HomePageComponent,
     HelpComponent,
     StatementComponent,
+    RecentComponent,
   ],
   imports: [
     BrowserModule,

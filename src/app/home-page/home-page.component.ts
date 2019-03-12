@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {StatementService} from '../core/statement.service';
-import {Statement} from '../core/statement.model';
+import {StatementService} from '../services/statement.service';
+import {Statement} from '../model/statement.model';
 
 @Component({
   selector: 'app-home-page',
