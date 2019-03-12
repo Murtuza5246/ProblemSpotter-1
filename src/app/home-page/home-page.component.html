@@ -17,7 +17,7 @@
       </mat-chip-list>
       <div>
         <div class="card-container-horizontal-reversed">
-          <button mat-flat-button (click)="statementService.saveStatement(statement);isButtonClicked=true; "
+          <button mat-flat-button (click)="isButtonClicked=true;statementService.saveStatement(statement); "
                   color="accent">Save
           </button>
           <button style="margin-left: 8px" (click)="isButtonClicked=true;" mat-flat-button>Ask</button>
