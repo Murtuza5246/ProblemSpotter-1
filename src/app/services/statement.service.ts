@@ -32,6 +32,7 @@ export class StatementService {
     let statementObject = {
       statementID: statement.id,
       title: statement.title,
+      status:statement.status
     };
     this.afs.collection('user').doc(this.auth.userUID).collection('history').add(statementObject).then(value => {
       let idData = {
@@ -46,15 +47,17 @@ export class StatementService {
       statementID: statement.id,
       title: statement.title,
       status: statement.status,
-      fields: statement.fields
     };
-    console.log('save statement ' + statement.fields);
+
+    console.log(statementObject.statementID);
+    console.log(statementObject.title);
+    console.log(statementObject.status);
 
     this.afs.collection('user').doc(this.auth.userUID).collection('saved').add(statementObject).then(value => {
       let idData = {
         id: value.id
       };
-      this.afs.collection('user').doc(this.auth.userUID).collection('history').doc(value.id).set(idData, {merge: true});
+      this.afs.collection('user').doc(this.auth.userUID).collection('saved').doc(value.id).set(idData, {merge: true});
     }).catch(reason => {
       console.log('Reason : ' + reason);
     });
@@ -71,8 +74,13 @@ export class StatementService {
         value.get('status'),
         value.get('uploaderUID')
       );
+      console.log();
       this.saveStatement(statement);
     });
+  }
+
+  removeStatement(id: string, isRecent: boolean) {
+    this.afs.collection('user').doc(this.auth.userUID).collection(isRecent ? 'history' : 'saved').doc(id).delete();
   }
 
 }

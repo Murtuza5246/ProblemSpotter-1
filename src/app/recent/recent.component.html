@@ -3,6 +3,7 @@
     <mat-card (click)="onClickCard(recent)" class="card card-container">
       <div class="card-container-horizontal">
         <p class="title" mat-card-title>{{recent.title}}</p>
+        <mat-icon color="warn" (click)="statementService.removeStatement(recent.id,true)">close</mat-icon>
       </div>
       <div class="card-container-horizontal-reversed">
         <button mat-flat-button (click)="statementService.saveRecent(recent)" color="accent">Save</button>
