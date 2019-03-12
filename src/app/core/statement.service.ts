@@ -30,4 +30,13 @@ export class StatementService {
     });
 
   }
+
+  addStatementToHistory(statement: Statement) {
+    let statementObject = {
+      statementID: statement.id,
+      title: statement.title,
+    };
+    this.afs.collection('user').doc(this.auth.userUID).collection('history').add(statementObject);
+  }
+
 }

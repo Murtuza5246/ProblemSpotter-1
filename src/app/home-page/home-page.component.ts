@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthService} from '../core/auth.service';
-import {AngularFirestore} from '@angular/fire/firestore';
 import {StatementService} from '../core/statement.service';
+import {Statement} from '../core/statement.model';
 
 @Component({
   selector: 'app-home-page',
@@ -13,10 +12,14 @@ export class HomePageComponent implements OnInit {
 
   colors = ['#FFFFFF', '#FAFAD2'];
 
-  constructor(private router: Router, private auth: AuthService, private afs: AngularFirestore, public StatementService: StatementService) {
+  constructor(private router: Router, public statementService: StatementService) {
 
+  }
 
-
+  onClickCard(statement: Statement) {
+    this.statementService.addStatementToHistory(statement);
+    this.statementService.selectedStatement = statement;
+    this.router.navigate(['statement']);
   }
 
   ngOnInit() {

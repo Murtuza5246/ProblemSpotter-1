@@ -1,6 +1,6 @@
-<div *ngFor="let statement of StatementService.statements$">
+<div *ngFor="let statement of statementService.statements$">
   <div>
-    <mat-card [ngStyle]="{'background-color': colors[statement.status]}" [routerLink]="['/statement',statement.id]" class="card card-container">
+    <mat-card [ngStyle]="{'background-color': colors[statement.status]}" (click)="onClickCard(statement)" class="card card-container">
       <div class="card-container-horizontal">
         <p class="title" mat-card-title>{{statement.title}}</p>
         <p mat-card-subtitle>{{statement.date.toDate().toLocaleDateString() }}</p>
