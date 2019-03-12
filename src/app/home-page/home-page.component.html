@@ -1,6 +1,7 @@
-<div *ngFor="let statement of statementService.allStatements$">
+<div *ngFor="let statement of statementService.allStatements$ | async">
   <div>
-    <mat-card [ngStyle]="{'background-color': colors[statement.status]}" (click)="onClickCard(statement)" class="card card-container">
+    <mat-card [ngStyle]="{'background-color': colors[statement.status]}" (click)="onClickCard(statement)"
+              class="card card-container">
       <div class="card-container-horizontal">
         <p class="title" mat-card-title>{{statement.title}}</p>
         <p mat-card-subtitle>{{statement.date.toDate().toLocaleDateString() }}</p>
@@ -8,10 +9,26 @@
       <div class="card-container-horizontal">
         <p mat-card-subtitle>{{statement.description.substring(0, 150)}}</p>
       </div>
-      <div class="card-container-horizontal">
-        <button mat-flat-button (click)="statementService.saveStatement(statement)" color="accent">Save</button>
-        <button style="margin-left: 8px" mat-flat-button>Ask</button>
+      <mat-chip-list class="fields-chip">
+        <p class="field-title mat-body">Fields:</p>
+        <div *ngFor="let field of statement.fields">
+          <mat-chip>{{field}}</mat-chip>
+        </div>
+      </mat-chip-list>
+      <div>
+        <div class="card-container-horizontal-reversed">
+          <button mat-flat-button (click)="statementService.saveStatement(statement);isButtonClicked=true; "
+                  color="accent">Save
+          </button>
+          <button style="margin-left: 8px" (click)="isButtonClicked=true;" mat-flat-button>Ask</button>
+        </div>
       </div>
     </mat-card>
   </div>
 </div>
+
+<span class="filter">
+    <button mat-fab>
+      <mat-icon>filter_list</mat-icon>
+    </button>
+  </span>

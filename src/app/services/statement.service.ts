@@ -3,12 +3,14 @@ import {AuthService} from './auth.service';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Statement} from '../model/statement.model';
 import {Recent} from '../model/recent.model';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class StatementService {
 
-  allStatements$ = Array<Statement>();
-  recentStatement$ = Array<Recent>();
+  allStatements$: Observable<any>;
+  recentStatement$: Observable<any>;
+  savedStatement$: Observable<any>;
   selectedStatement: Statement;
 
   constructor(
@@ -17,26 +19,13 @@ export class StatementService {
   ) {
 
     //adding all statements.
-    this.afs.collection('statements').get().subscribe(value => {
-      value.forEach(result => {
-        this.allStatements$.push(new Statement(
-          result.id,
-          result.get('title'),
-          result.get('date'),
-          result.get('description'),
-          result.get('fields'),
-          result.get('status'),
-          result.get('uploaderUID')
-        ));
-      });
-    });
+    this.allStatements$ = afs.collection('statements').valueChanges();
 
     //adding recent statements.
-    this.afs.collection('user').doc(this.auth.userUID).collection('history').get().subscribe(value => {
-      value.forEach(result => {
-        this.recentStatement$.push(new Recent(result.id, result.get('statementID'), result.get('title')));
-      });
-    });
+    this.recentStatement$ = this.afs.collection('user').doc(this.auth.userUID).collection('history').valueChanges();
+
+    //adding saved statements.
+    this.savedStatement$ = this.afs.collection('user').doc(this.auth.userUID).collection('saved').valueChanges();
   }
 
   addStatementToHistory(statement: Statement) {
@@ -44,7 +33,12 @@ export class StatementService {
       statementID: statement.id,
       title: statement.title,
     };
-    this.afs.collection('user').doc(this.auth.userUID).collection('history').add(statementObject);
+    this.afs.collection('user').doc(this.auth.userUID).collection('history').add(statementObject).then(value => {
+      let idData = {
+        id: value.id
+      };
+      this.afs.collection('user').doc(this.auth.userUID).collection('history').doc(value.id).set(idData, {merge: true});
+    });
   }
 
   saveStatement(statement: Statement) {

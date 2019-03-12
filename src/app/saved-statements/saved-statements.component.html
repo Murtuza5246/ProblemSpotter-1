@@ -1,0 +1,14 @@
+<div *ngFor="let statement of statementService.savedStatement$ | async">
+  <div>
+    <mat-card (click)="onClickCard(statement)" class="card card-container">
+      <div class="card-container-horizontal">
+        <p class="title" mat-card-title>{{statement.title}}</p>
+        <button mat-button (click)="statementService.saveStatement(statement)" color="accent">add solution</button>
+      </div>
+      <div class="card-container-horizontal">
+        <!--<p mat-card-subtitle>{{statement.description.substring(0, 150)}}</p>-->
+
+      </div>
+    </mat-card>
+  </div>
+</div>

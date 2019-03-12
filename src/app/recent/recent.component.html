@@ -1,4 +1,4 @@
-<div *ngFor="let recent of statementService.recentStatement$">
+<div *ngFor="let recent of statementService.recentStatement$ | async">
   <div>
     <mat-card (click)="onClickCard(recent)" class="card card-container">
       <div class="card-container-horizontal">

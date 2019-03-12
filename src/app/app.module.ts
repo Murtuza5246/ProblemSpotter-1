@@ -66,6 +66,7 @@ import {HelpComponent} from './help/help.component';
 import {StatementComponent} from './statement/statement.component';
 import {StatementService} from './services/statement.service';
 import {RecentComponent} from './recent/recent.component';
+import {SavedStatementsComponent} from './saved-statements/saved-statements.component';
 
 const appRoutes: Routes = [
   {
@@ -93,6 +94,11 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'saved',
+    component: SavedStatementsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: '**',
     redirectTo: '/'
   },
@@ -106,6 +112,7 @@ const appRoutes: Routes = [
     HelpComponent,
     StatementComponent,
     RecentComponent,
+    SavedStatementsComponent,
   ],
   imports: [
     BrowserModule,

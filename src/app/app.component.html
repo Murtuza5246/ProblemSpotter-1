@@ -10,7 +10,7 @@
       <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/recent']">
         Recent statement
       </a>
-      <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/']">
+      <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/saved']">
         Saved statement
       </a>
       <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/']">
@@ -38,7 +38,7 @@
       <!--<img class="logo-image" src="../assets/image/logo.jpg" (click)="router.navigate([''])" height="50px" width="70px"-->
       <!--alt="Logo">-->
 
-      <span class="title"> Problem Spotter </span>
+      <span class="title" [routerLink]="['/']"> Problem Spotter </span>
       <!--suppress HtmlUnknownTarget -->
       <img class="profile-picture" src="{{user.photoURL}}" (click)="router.navigate(['login'])" alt="profile picture"
            width="40px" height="40px">
