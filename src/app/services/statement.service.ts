@@ -64,7 +64,7 @@ export class StatementService {
       let idData = {
         id: value.id
       };
-      this.afs.collection('user').doc(this.auth.userUID).collection('saved').doc(value.id).set(idData, {merge: true}).then(val => {
+      this.afs.collection('user').doc(this.auth.userUID).collection('saved').doc(value.id).set(idData, {merge: true}).then(() => {
         this.spinner.hide();
       });
     }).catch(reason => {
@@ -90,7 +90,7 @@ export class StatementService {
   removeStatement(id: string, isRecent: boolean) {
     this.spinner.show();
 
-    this.afs.collection('user').doc(this.auth.userUID).collection(isRecent ? 'history' : 'saved').doc(id).delete().then(value => {
+    this.afs.collection('user').doc(this.auth.userUID).collection(isRecent ? 'history' : 'saved').doc(id).delete().then(() => {
       this.spinner.hide();
     });
   }
@@ -102,7 +102,7 @@ export class StatementService {
       let idData = {
         id: value.id
       };
-      this.afs.collection('solutions').doc(value.id).set(idData, {merge: true}).then(value1 => {
+      this.afs.collection('solutions').doc(value.id).set(idData, {merge: true}).then(() => {
         this.spinner.hide();
       });
     });
