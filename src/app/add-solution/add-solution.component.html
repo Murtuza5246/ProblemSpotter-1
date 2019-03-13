@@ -1,3 +1,34 @@
-<p>
-  add-solution works!
-</p>
+<div class="container">
+
+  <div class="title">
+    <h1>{{title}}</h1>
+  </div>
+
+  <hr>
+
+  <div class="edit-content">
+
+    <div>
+      <label for="headline">Head line</label>
+      <input [(ngModel)]="headline" type="text" class="form-control" id="headline" placeholder="Your headline">
+    </div>
+    <br>
+    <div>
+      <label for="message">Your solution</label>
+      <textarea [(ngModel)]="message" class="form-control" id="message" rows="7"></textarea>
+    </div>
+    <br>
+
+    <div class="addedMedia"></div>
+
+    <div class="btn btn-outline-primary">Photos / Videos</div>
+
+  </div>
+
+  <div (click)="onClickUpload()" class="uploadButton">
+    <button mat-fab color="primary">
+      <mat-icon>cloud_upload</mat-icon>
+    </button>
+  </div>
+
+</div>

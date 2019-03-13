@@ -82,5 +82,13 @@ export class StatementService {
     this.afs.collection('user').doc(this.auth.userUID).collection(isRecent ? 'history' : 'saved').doc(id).delete();
   }
 
+  uploadStatement(solution: { statementID: string; title: string; message: string; headline: string }) {
+    this.afs.collection('solutions').add(solution).then(value =>{
+      let idData = {
+        id: value.id
+      };
+      this.afs.collection('solutions').doc(value.id).set(idData, {merge: true});
+    })
+  }
 }
 
