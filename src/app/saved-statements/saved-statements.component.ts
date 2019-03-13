@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {StatementService} from '../services/statement.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-saved-statements',
@@ -8,14 +9,21 @@ import {StatementService} from '../services/statement.service';
 })
 export class SavedStatementsComponent implements OnInit {
 
-  constructor(private statementService: StatementService) {
-  }
+  isButtonClicked = false;
+
+  constructor(private statementService: StatementService, public router: Router) {}
 
   ngOnInit() {
   }
 
   onClickCard(statement) {
+    if (!this.isButtonClicked) {
+      this.router.navigate(['statement',statement.statementID]);
+    }
+  }
 
+  onClickSolution(id:string){
+    this.router.navigate(['solution',id]);
   }
 
 }

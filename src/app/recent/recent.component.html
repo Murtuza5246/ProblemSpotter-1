@@ -3,11 +3,10 @@
     <mat-card (click)="onClickCard(recent)" class="card card-container">
       <div class="card-container-horizontal">
         <p class="title" mat-card-title>{{recent.title}}</p>
-        <mat-icon color="warn" (click)="statementService.removeStatement(recent.id,true)">close</mat-icon>
+        <mat-icon color="warn" (click)="isButtonClicked=true;statementService.removeStatement(recent.id,true)">close</mat-icon>
       </div>
       <div class="card-container-horizontal-reversed">
-        <button mat-flat-button (click)="statementService.saveRecent(recent)" color="accent">Save</button>
-        <button style="margin-left: 8px" mat-flat-button>Ask</button>
+        <button mat-flat-button (click)="isButtonClicked=true;statementService.saveRecent(recent)" color="accent">Save</button>
       </div>
     </mat-card>
   </div>

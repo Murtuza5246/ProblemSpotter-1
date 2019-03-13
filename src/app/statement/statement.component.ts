@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {StatementService} from '../services/statement.service';
 import {Statement} from '../model/statement.model';
 
 // @ts-ignore
@@ -13,10 +12,24 @@ import {Statement} from '../model/statement.model';
 })
 export class StatementComponent implements OnInit {
 
-  statement: Statement;
+  statement: Statement = new Statement("not found","Loading",null,"",[""],0,"Not found");
 
-  constructor(private route: ActivatedRoute, private afs: AngularFirestore, private statementService: StatementService) {
-    this.statement = statementService.selectedStatement;
+  constructor(private route: ActivatedRoute, private afs: AngularFirestore, private activatedRoute: ActivatedRoute) {
+
+    this.afs.collection('statements').doc(activatedRoute.snapshot.params['id']).get().subscribe(value => {
+      if (value) {
+        this.statement = new Statement(
+          value.id,
+          value.get('title'),
+          value.get('date'),
+          value.get('description'),
+          value.get('fields'),
+          value.get('status'),
+          value.get('uploaderID')
+        );
+      }
+    });
+
   }
 
   ngOnInit() {

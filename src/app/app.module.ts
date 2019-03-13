@@ -67,7 +67,8 @@ import {StatementComponent} from './statement/statement.component';
 import {StatementService} from './services/statement.service';
 import {RecentComponent} from './recent/recent.component';
 import {SavedStatementsComponent} from './saved-statements/saved-statements.component';
-import { FilterDialogComponent } from './home-page/filter-dialog/filter-dialog.component';
+import {FilterDialogComponent} from './home-page/filter-dialog/filter-dialog.component';
+import {AddSolutionComponent} from './add-solution/add-solution.component';
 
 const appRoutes: Routes = [
   {
@@ -85,13 +86,18 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'statement',
+    path: 'statement/:id',
     component: StatementComponent,
     canActivate: [AuthGuard]
   },
   {
     path: 'recent',
     component: RecentComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'solution/:id',
+    component: AddSolutionComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -106,7 +112,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  entryComponents:[
+  entryComponents: [
     FilterDialogComponent
   ],
   declarations: [
@@ -118,6 +124,7 @@ const appRoutes: Routes = [
     RecentComponent,
     SavedStatementsComponent,
     FilterDialogComponent,
+    AddSolutionComponent,
   ],
   imports: [
     BrowserModule,

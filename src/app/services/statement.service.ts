@@ -64,7 +64,7 @@ export class StatementService {
   }
 
   saveRecent(recent: Recent) {
-    this.afs.collection('user').doc(this.auth.userUID).collection('history').doc(recent.id).get().subscribe(value => {
+    this.afs.collection('statements').doc(recent.statementID).get().subscribe(value => {
       let statement = new Statement(
         value.id,
         value.get('title'),
@@ -74,7 +74,6 @@ export class StatementService {
         value.get('status'),
         value.get('uploaderUID')
       );
-      console.log();
       this.saveStatement(statement);
     });
   }

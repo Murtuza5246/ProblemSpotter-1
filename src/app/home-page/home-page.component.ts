@@ -40,7 +40,7 @@ export class HomePageComponent implements OnInit {
     if (!this.isButtonClicked) {
       this.statementService.addStatementToHistory(statement);
       this.statementService.selectedStatement = statement;
-      this.router.navigate(['statement']);
+      this.router.navigate(['statement',statement.id]);
     }
   }
 
