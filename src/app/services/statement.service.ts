@@ -4,6 +4,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {Statement} from '../model/statement.model';
 import {Recent} from '../model/recent.model';
 import {Observable} from 'rxjs';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Injectable()
 export class StatementService {
@@ -17,10 +18,15 @@ export class StatementService {
 
   constructor(
     private auth: AuthService,
-    private afs: AngularFirestore
+    public afs: AngularFirestore,
+    public spinner: NgxSpinnerService
   ) {
 
-    this.filters.add('SURVEYING').add("aasfsad").add(' dsfgsdfgklsajgi').add('afshndfujs').add('igjhitjghirhfuhgv');
+    setTimeout(() => {
+      this.spinner.hide()
+    },5000);
+
+    this.filters.add('SURVEYING').add('aasfsad').add(' dsfgsdfgklsajgi').add('afshndfujs').add('igjhitjghirhfuhgv');
 
     //adding all statements.
     this.allStatements$ = afs.collection('statements').valueChanges();
@@ -52,12 +58,15 @@ export class StatementService {
       title: statement.title,
       status: statement.status,
     };
+    this.spinner.show();
 
     this.afs.collection('user').doc(this.auth.userUID).collection('saved').add(statementObject).then(value => {
       let idData = {
         id: value.id
       };
-      this.afs.collection('user').doc(this.auth.userUID).collection('saved').doc(value.id).set(idData, {merge: true});
+      this.afs.collection('user').doc(this.auth.userUID).collection('saved').doc(value.id).set(idData, {merge: true}).then(val => {
+        this.spinner.hide();
+      });
     }).catch(reason => {
       console.log('Reason : ' + reason);
     });
@@ -79,16 +88,24 @@ export class StatementService {
   }
 
   removeStatement(id: string, isRecent: boolean) {
-    this.afs.collection('user').doc(this.auth.userUID).collection(isRecent ? 'history' : 'saved').doc(id).delete();
+    this.spinner.show();
+
+    this.afs.collection('user').doc(this.auth.userUID).collection(isRecent ? 'history' : 'saved').doc(id).delete().then(value => {
+      this.spinner.hide();
+    });
   }
 
   uploadStatement(solution: { statementID: string; title: string; message: string; headline: string }) {
-    this.afs.collection('solutions').add(solution).then(value =>{
+    this.spinner.show();
+
+    this.afs.collection('solutions').add(solution).then(value => {
       let idData = {
         id: value.id
       };
-      this.afs.collection('solutions').doc(value.id).set(idData, {merge: true});
-    })
+      this.afs.collection('solutions').doc(value.id).set(idData, {merge: true}).then(value1 => {
+        this.spinner.hide();
+      });
+    });
   }
 }
 

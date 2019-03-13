@@ -4,7 +4,7 @@
     <mat-toolbar (click)="sidenav.toggle()">
       <mat-icon>close</mat-icon>
     </mat-toolbar>
-    <mat-nav-list >
+    <mat-nav-list>
       <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/']">
         Home
       </a>
@@ -47,6 +47,15 @@
   </mat-sidenav-container>
 
   <div class="container">
+    <ngx-spinner
+      bdOpacity=0.9
+      bdColor="#008cff"
+      size="large"
+      color="#ffffff"
+      type="square-jelly-box"
+      fullScreen="true">
+      <p style="color: white"> <br> Loading... </p>
+    </ngx-spinner>
     <router-outlet></router-outlet>
   </div>
 </div>

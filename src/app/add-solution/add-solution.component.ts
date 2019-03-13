@@ -22,15 +22,10 @@ export class AddSolutionComponent implements OnInit {
 
   constructor(private router: ActivatedRoute, private statementService: StatementService) {
     this.statementID = this.router.snapshot.params['id'];
-    statementService.allStatements$.subscribe((value) => {
-      let allStatements = value as Array<Statement>;
 
-      allStatements.forEach(statement => {
-        if (statement.id == this.statementID) {
-          this.title = statement.title
-        }
-      });
-    });
+    statementService.afs.collection('statements').doc(this.statementID).get().subscribe(value => {
+      this.title = value.get('title')
+    })
   }
 
   onClickUpload() {

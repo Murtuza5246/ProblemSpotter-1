@@ -69,6 +69,7 @@ import {RecentComponent} from './recent/recent.component';
 import {SavedStatementsComponent} from './saved-statements/saved-statements.component';
 import {FilterDialogComponent} from './home-page/filter-dialog/filter-dialog.component';
 import {AddSolutionComponent} from './add-solution/add-solution.component';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 const appRoutes: Routes = [
   {
@@ -127,6 +128,7 @@ const appRoutes: Routes = [
     AddSolutionComponent,
   ],
   imports: [
+    NgxSpinnerModule,
     BrowserModule,
     ReactiveFormsModule,
     BrowserModule,
