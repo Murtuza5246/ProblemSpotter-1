@@ -12,7 +12,6 @@ export class AddSolutionComponent implements OnInit {
 
   constructor(private router: ActivatedRoute) {
     this.statementID = this.router.snapshot.params['id'];
-    console.log(this.statementID);
   }
 
   ngOnInit() {

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Statement} from '../model/statement.model';
 
@@ -12,9 +12,9 @@ import {Statement} from '../model/statement.model';
 })
 export class StatementComponent implements OnInit {
 
-  statement: Statement = new Statement("not found","Loading",null,"",[""],0,"Not found");
+  statement: Statement = new Statement('not found', 'Loading', null, '', [''], 0, 'Not found');
 
-  constructor(private route: ActivatedRoute, private afs: AngularFirestore, private activatedRoute: ActivatedRoute) {
+  constructor(private afs: AngularFirestore, private activatedRoute: ActivatedRoute, private route: Router) {
 
     this.afs.collection('statements').doc(activatedRoute.snapshot.params['id']).get().subscribe(value => {
       if (value) {
@@ -29,7 +29,10 @@ export class StatementComponent implements OnInit {
         );
       }
     });
+  }
 
+  onClickClaim() {
+    this.route.navigate(['solution',this.statement.id]);
   }
 
   ngOnInit() {
