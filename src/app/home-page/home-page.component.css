@@ -37,3 +37,8 @@
   right: 20px;
   color: white;
 }
+
+.card-container-vertical{
+  display: flex;
+  flex-direction: column;
+}

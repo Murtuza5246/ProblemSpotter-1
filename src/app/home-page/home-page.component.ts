@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {StatementService} from '../services/statement.service';
 import {Statement} from '../model/statement.model';
-import {FilterDialogComponent} from './filter-dialog/filter-dialog.component';
-import {MatDialog} from '@angular/material';
+import {map, take} from 'rxjs/operators';
+import {forEach} from '@angular/router/src/utils/collection';
 
 
 @Component({
@@ -14,38 +14,50 @@ import {MatDialog} from '@angular/material';
 export class HomePageComponent implements OnInit {
 
   colors = ['#FFFFFF', '#FAFAD2'];
-
-  name: string;
-  animal: string;
-
   isButtonClicked = false;
 
-  constructor(private router: Router, public statementService: StatementService, public dialog: MatDialog) {
+  appliedFilter = new Set();
 
+  statement = this.statementService.allStatements$;
+
+  constructor(private router: Router, public statementService: StatementService) {
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(FilterDialogComponent, {
-      data: {name: this.name, animal: this.animal}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
-    });
-
+  ngOnInit() {
   }
 
   onClickCard(statement: Statement) {
     if (!this.isButtonClicked) {
       this.statementService.addStatementToHistory(statement);
       this.statementService.selectedStatement = statement;
-      this.router.navigate(['statement',statement.id]);
+      this.router.navigate(['statement', statement.id]);
     }
   }
 
-  ngOnInit() {
+  applyFilter() {
+    this.statement = this.statementService.allStatements$.pipe(take(1), map(value => {
+      let statements = Array<Statement>();
+
+      let stat = value as Array<Statement>;
+
+      stat.forEach(rootElement => {
+        rootElement.fields.forEach(f => {
+          if (this.appliedFilter.has(f)) {
+            statements.push(rootElement);
+          }
+        });
+      });
+
+      return statements;
+    }));
   }
 
+  onChangeFilter(filter: string) {
+    if (this.appliedFilter.has(filter)) {
+      this.appliedFilter.delete(filter);
+    } else {
+      this.appliedFilter.add(filter);
+    }
+  }
 }
 
