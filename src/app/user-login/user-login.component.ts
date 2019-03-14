@@ -23,15 +23,26 @@ export class UserLoginComponent implements OnInit {
 
   constructor(public auth: AuthService) {
     auth.user$.subscribe((user: User) => {
-      this.uid = user.uid;
-      this.phoneNumber = user.phoneNumber;
-      this.dateOfBirth = user.dateOfBirth.toDate().toDateString();
-      this.collageName = user.collage;
-      this.instituteCode = String(user.instituteCode);
-      this.department = 'Civil Engineering';
-      this.academicYear = user.academicYear;
-      this.principalName = user.principalName;
-      this.enrollmentNumber = String(user.enrollmentNumber);
+
+      let dateOfBirth: any;
+
+      try {
+        dateOfBirth = user.dateOfBirth.toDate().toDateString();
+      } catch (e) {
+        dateOfBirth = user.dateOfBirth
+      }
+
+      if (user != null) {
+        this.uid = user.uid;
+        this.phoneNumber = user.phoneNumber;
+        this.dateOfBirth = dateOfBirth;
+        this.collageName = user.collage;
+        this.instituteCode = String(user.instituteCode);
+        this.department = 'Civil Engineering';
+        this.academicYear = user.academicYear;
+        this.principalName = user.principalName;
+        this.enrollmentNumber = String(user.enrollmentNumber);
+      }
     });
   }
 

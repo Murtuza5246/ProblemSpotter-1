@@ -20,7 +20,7 @@ export class AddSolutionComponent implements OnInit {
   //todo: Add media when get server.
   // media: Array<File>;
 
-  constructor(private router: ActivatedRoute, private statementService: StatementService) {
+  constructor(private router: ActivatedRoute, public statementService: StatementService) {
     this.statementID = this.router.snapshot.params['id'];
 
     statementService.afs.collection('statements').doc(this.statementID).get().subscribe(value => {

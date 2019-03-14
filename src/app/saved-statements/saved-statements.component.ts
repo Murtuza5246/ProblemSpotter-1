@@ -11,7 +11,7 @@ export class SavedStatementsComponent implements OnInit {
 
   isButtonClicked = false;
 
-  constructor(private statementService: StatementService, public router: Router) {}
+  constructor(public statementService: StatementService, public router: Router) {}
 
   ngOnInit() {
   }

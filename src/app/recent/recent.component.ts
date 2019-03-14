@@ -13,7 +13,7 @@ export class RecentComponent implements OnInit {
 
   isButtonClicked = false;
 
-  constructor(private authService: AuthService, private statementService: StatementService,private router:Router) {
+  constructor(private authService: AuthService, public statementService: StatementService,private router:Router) {
   }
 
   ngOnInit() {

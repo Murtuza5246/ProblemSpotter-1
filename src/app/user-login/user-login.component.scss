@@ -26,17 +26,27 @@
   margin: 8px;
 }
 
-.flex-container{
+.flex-container {
   display: flex;
   flex-direction: column;
 }
 
-.form{
+.form {
   margin: 16px 0;
 }
 
+.flex-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+mat-card{
+  border: 1px dodgerblue solid;
+}
+
 @media (min-width: 600px) {
-  .container{
+  .container {
     width: 600px;
   }
 }

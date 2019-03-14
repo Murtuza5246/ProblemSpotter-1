@@ -1,4 +1,7 @@
-<h3 class="quote-banner">Without hard work you cannot execute your smart work. -MURTUJA KAVANTWALA.</h3>
+<div class="flex-top">
+  <h3 class="quote-banner">Without hard work you cannot execute your smart work.</h3>
+  <h4> -MURTUJA KAVANTWALA.</h4>
+</div>
 
 <mat-card class="container material-card">
   <div *ngIf="auth.user$ | async; then authenticated else guest">
@@ -20,14 +23,14 @@
       <h3>Hello!!, {{ user.displayName }}</h3>
       <p style="margin-top: -8px" class="mat-small">UID: {{ user.uid }}</p>
 
-      <div class="flex-container form" >
+      <div class="flex-container form">
 
         <mat-form-field>
           <input matInput placeholder="Your email" value="{{ user.email }}" disabled>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Phone number" [(ngModel)]="phoneNumber"  value="{{ user.phoneNumber }}" type="tel"
+          <input matInput placeholder="Phone number" [(ngModel)]="phoneNumber" value="{{ user.phoneNumber }}" type="tel"
                  required>
         </mat-form-field>
 
@@ -44,7 +47,8 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Enrollment Number" [(ngModel)]="enrollmentNumber" value="{{ user.enrollmentNumber }}"
+          <input matInput placeholder="Enrollment Number" [(ngModel)]="enrollmentNumber"
+                 value="{{ user.enrollmentNumber }}"
                  type="number" required>
         </mat-form-field>
 

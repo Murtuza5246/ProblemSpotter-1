@@ -3,8 +3,6 @@ import {Router} from '@angular/router';
 import {StatementService} from '../services/statement.service';
 import {Statement} from '../model/statement.model';
 import {map, take} from 'rxjs/operators';
-import {forEach} from '@angular/router/src/utils/collection';
-
 
 @Component({
   selector: 'app-home-page',
@@ -37,7 +35,6 @@ export class HomePageComponent implements OnInit {
   applyFilter() {
     this.statement = this.statementService.allStatements$.pipe(take(1), map(value => {
       let statements = Array<Statement>();
-
       let stat = value as Array<Statement>;
 
       stat.forEach(rootElement => {
