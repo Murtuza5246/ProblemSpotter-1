@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {User} from '../model/user.model';
+import Timestamp = firebase.firestore.Timestamp;
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-user-login',
@@ -29,7 +31,7 @@ export class UserLoginComponent implements OnInit {
       try {
         dateOfBirth = user.dateOfBirth.toDate().toDateString();
       } catch (e) {
-        dateOfBirth = user.dateOfBirth
+        dateOfBirth = user.dateOfBirth;
       }
 
       if (user != null) {
@@ -50,29 +52,57 @@ export class UserLoginComponent implements OnInit {
   }
 
   onSubmit() {
+
+    let userData = new Map()
+      .set('phoneNumber', this.phoneNumber)
+      .set('dateOfBirth', this.dateOfBirth)
+      .set('collage', this.collageName)
+      .set('instituteCode', this.instituteCode)
+      .set('department', this.department)
+      .set('academicYear', this.academicYear)
+      .set('principalName', this.principalName)
+      .set('enrollmentNumber', this.enrollmentNumber);
+
     let user = {
       phoneNumber: this.phoneNumber,
       dateOfBirth: this.dateOfBirth,
       collage: this.collageName,
       instituteCode: Number(this.instituteCode),
       department: this.department,
-      academicYear: this.academicYear,
+      academicYear: Number(this.academicYear),
       principalName: this.principalName,
       enrollmentNumber: Number(this.enrollmentNumber),
     };
 
-    let isValid = true;
-
-    Object.values(user).forEach(data => {
-      if (typeof (data) == 'undefined' || data == null) {
-        console.log(data + ' is not defined.');
-        isValid = false;
+    Object.values(Array.from(userData.keys())).forEach(key => {
+      if (typeof (key) == 'undefined' || key == null) {
+        console.log(key);
+        userData[key] = UserLoginComponent.getNotDefinedValue(key);
       }
     });
 
-    if (isValid) {
-      this.auth.updateUserProfileData(user, this.uid);
-    }
+    this.auth.updateUserProfileData(user, this.uid);
 
+  }
+
+  static getNotDefinedValue(key: String): any {
+    switch (key) {
+      case 'enrollmentNumber' : {
+        return 0;
+      }
+      case 'academicYear' : {
+        return 0;
+      }
+      case 'instituteCode' : {
+        return 0;
+      }
+      case '': {
+        return Timestamp.now();
+      }
+      default : {
+        return '';
+      }
+
+    }
   }
 }

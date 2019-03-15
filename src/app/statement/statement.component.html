@@ -1,4 +1,6 @@
-<div class="jumbotron">
+
+<br>
+<div class="container">
   <h3 class="display-5">{{statement.title}}</h3>
   <div class="fields-chip">
     <div *ngFor="let field of statement.fields">
@@ -18,7 +20,7 @@
   </div>
   <hr class="my-1">
   <button (click)="onClickClaim()" mat-flat-button class="claim-button" color="accent">
-    <mat-icon >done</mat-icon>
+    <mat-icon>done</mat-icon>
     Claim for already solved
   </button>
 </div>

@@ -15,14 +15,14 @@
         Saved statement
       </a>
       <!--<a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/']">-->
-        <!--Current Project-->
+      <!--Current Project-->
       <!--</a>-->
       <hr>
       <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/help']">
         Help
       </a>
       <!--<a mat-list-item (click)="sidenav.toggle()" [routerLink]="['/']">-->
-        <!--Referral program-->
+      <!--Referral program-->
       <!--</a>-->
       <hr>
       <a mat-list-item (click)="sidenav.toggle(); auth.signOut()" [routerLink]="['/login']">
@@ -44,18 +44,19 @@
       <img class="profile-picture" src="{{user.photoURL}}" (click)="router.navigate(['login'])" alt="profile picture"
            width="40px" height="40px">
     </mat-toolbar>
-  </mat-sidenav-container>
 
-  <div class="container">
-    <ngx-spinner
-      bdOpacity=0.9
-      bdColor="#008cff"
-      size="large"
-      color="#ffffff"
-      type="square-jelly-box"
-      fullScreen="true">
-      <p style="color: white"> <br> Loading... </p>
-    </ngx-spinner>
-    <router-outlet></router-outlet>
-  </div>
+    <div class="container">
+      <ngx-spinner
+        bdOpacity=0.9
+        bdColor="#008cff"
+        size="large"
+        color="#ffffff"
+        type="square-jelly-box"
+        fullScreen="true">
+        <p style="color: white"><br> Loading... </p>
+      </ngx-spinner>
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-container>
 </div>
