@@ -1,5 +1,4 @@
 <div *ngFor="let statement of statement | async">
-  <div >
     <mat-card [ngStyle]="{'background-color': colors[statement.status]}" (click)="onClickCard(statement)"
               class="card card-container">
       <div class="card-container-horizontal">
@@ -23,7 +22,6 @@
         </div>
       </div>
     </mat-card>
-  </div>
 </div>
 
 <span class="filter">
